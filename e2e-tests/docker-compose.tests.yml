@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  cypress:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    entrypoint: tail -f /dev/null
+    environment:
+      CYPRESS_BASE_URL: http://frontend:4100
+      CYPRESS_apiUrl: http://backend:3000
+
+    depends_on:
+      - backend
+      - frontend
+
+  frontend:
+    build:
+      context: code/client
+      dockerfile: docker/Dockerfile
+    environment:
+      BACKEND_URL: http://backend:3000
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: code/server
+      dockerfile: docker/Dockerfile

@@ -1,0 +1,8 @@
+{
+  "article": {
+    "title": "Test article title",
+    "description": "abut test text",
+    "body": "Ut exercitationem nihil eum qui enim qui dicta. Maiores consequatur asperiores nihil ad.",
+    "tagList": ["test", "article", "cypress"]
+  }
+}

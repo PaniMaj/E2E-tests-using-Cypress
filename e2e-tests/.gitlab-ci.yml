@@ -1,0 +1,14 @@
+include:
+  - project: 'merixstudio/pts/pipelines'
+    ref: 'master'
+    file: '/Jobs.gitlab-ci.yml'
+
+cypress tests:
+  extends: [.cypress_api_tests]
+  variables:
+    CYPRESS_TEST_COMMAND: yarn run test
+    COMPOSE_FILE: docker-compose.tests.yml
+    COMPOSE_ARTIFACT_PATHS: cypress/reports/final,cypress/screenshots,cypress/videos
+    GENERATE_REPORT_COMMAND: yarn run cy:generate:report
+    CLONE_REPOSITORIES: |
+      gitlab.mrx.gd/merixstudio/pts/cypress-e2e-tests-boilerplate/code.git;master;code

@@ -1,0 +1,57 @@
+{
+  "name": "cypress-e2e-tests-boilerplate",
+  "version": "1.2.0",
+  "description": "Cypress E2E tests boilerplate",
+  "private": true,
+  "main": "index.js",
+  "engines": {
+    "node": ">=14.17.6"
+  },
+  "scripts": {
+    "test": "cypress run",
+    "test:ui": "cypress open",
+    "lint": "eslint .",
+    "delete": "del-cli --force ./examples",
+    "warn-only": "stop-only --warn --folder cypress/integration",
+    "stop-only": "stop-only --folder cypress/integration",
+    "release": "standard-version",
+    "merge-reports": "mochawesome-merge cypress/reports/mochawesome-report/*.json > cypress/reports/output.json",
+    "generate-mochawesome-report": "marge cypress/reports/output.json -o ./cypress/reports/final -i -f report.html -p 'Cypress boilerplate test results' -t 'Cypress boilerplate test results' --showSkipped",
+    "cy:generate:report": "yarn merge-reports && yarn generate-mochawesome-report"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/merixstudio/pts/cypress-e2e-tests-boilerplate"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bahmutov/cy-api": "2.2.5",
+    "cypress": "13.6.4",
+    "eslint": "^7.10.0",
+    "eslint-plugin-chai-friendly": "^0.7.1",
+    "eslint-plugin-cypress": "^2.11.2",
+    "lint-staged": "^11.1.1",
+    "mochawesome": "^7.0.1",
+    "mochawesome-merge": "^4.2.1",
+    "mochawesome-report-generator": "^6.0.1",
+    "prettier": "2.8.8",
+    "standard-version": "^9.3.2",
+    "stop-only": "3.1.0",
+    "yarn-upgrade-all": "^0.7.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run warn-only",
+      "pre-push": "npm run stop-only"
+    }
+  },
+  "dependencies": {
+    "electron": "latest",
+    "eslint-config-airbnb-base": "14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "faker": "^5.5.3",
+    "husky": "^8.0.1"
+  }
+}
